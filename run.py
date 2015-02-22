@@ -14,16 +14,17 @@ def hello_monkey():
     """Respond to incoming requests."""
     from_number = request.values.get('From', None)
     body = request.values.get('Body', None)
-
     resp = twilio.twiml.Response()
-
+    
  	if from_number in callers:
         resp.message("Well hello there " + callers[from_number])
         resp.message("You sent me: " + body)
+ 	
  	else: 
  		resp.message("Hello, I don't know who you are.")
- 		
+
     return str(resp)
  
+
 if __name__ == "__main__":
     app.run(debug=True)
