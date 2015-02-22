@@ -1,8 +1,7 @@
-from flask import Flask, request
-from twilio import twiml
-from twilio.rest import TwilioRestClient
+from flask import Flask, request, redirect
+import twilio.twiml
 import os
- 
+
 app = Flask(__name__)
 
 callers = {
@@ -14,6 +13,7 @@ def hello_monkey():
     """Respond to incoming requests."""
     from_number = request.values.get('From', None)
     body = request.values.get('Body', None)
+    
     resp = twilio.twiml.Response()
     if from_number in callers:
         resp.message("Well hello there " + callers[from_number])
