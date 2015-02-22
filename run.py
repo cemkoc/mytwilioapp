@@ -4,9 +4,9 @@ import os
 
 app = Flask(__name__)
 
-callers = {
-        "+14152983952": "Jem Koch"
-}
+# callers = {
+#         "+14152983952": "Jem Koch"
+# }
  
 @app.route("/", methods=['GET', 'POST'])
 def hello_monkey():
@@ -15,12 +15,8 @@ def hello_monkey():
     body = request.values.get('Body', None)
     
     resp = twilio.twiml.Response()
-    if from_number in callers:
-        resp.message("Well hello there " + callers[from_number])
-        resp.message("You sent me: " + body)
 
-    else: 
- 		resp.message("Hello, I don't know who you are.")
+    resp.message("You sent me: " + body)
 
     return str(resp)
  
