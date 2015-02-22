@@ -13,10 +13,12 @@ def hello_monkey():
     """Respond to incoming requests."""
     from_number = request.values.get('From', None)
     body = request.values.get('Body', None)
-    
     resp = twilio.twiml.Response()
-
-    resp.message("You sent me: " + body)
+    
+    if body:	
+    	resp.message("You sent me: " + body)
+    else:
+    	resp.message("You sent nothing.")
 
     return str(resp)
  
